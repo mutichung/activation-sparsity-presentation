@@ -36,7 +36,7 @@ Mu-Ti Chung, 2025.03.02
 
 ## Background & Motivation
 
-- Ambarella chips can benefit from **unstructured sparsity**.
+- Ambarella chips benefit from **unstructured sparsity**.
 - LLMs are more challenging to prune & retrain.
 - FFN takes up $\sim\frac{2}{3}$ of the weights.
 

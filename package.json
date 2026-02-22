@@ -6,8 +6,8 @@
     "@marp-team/marp-cli": "^4.2.3"
   },
   "scripts": {
-    "build-html": "marp --engine engine.mjs --theme theme.css slide.md -o public/index.html",
+    "build-html": "mkdir -p public && cp -r $PWD/assets public/ && marp --engine engine.mjs --theme theme.css slide.md -o public/index.html",
     "build-pdf": "marp --engine engine.mjs --theme theme.css slide.md -o slide.pdf --allow-local-files",
-    "watch": "mkdir -p public && ln -sf $PWD/assets public/ && marp --engine engine.mjs --theme theme.css slide.md -o public/index.html -w"
+    "watch": "mkdir -p public && cp -r $PWD/assets public/ && marp --engine engine.mjs --theme theme.css slide.md -o public/index.html -w"
   }
 }
