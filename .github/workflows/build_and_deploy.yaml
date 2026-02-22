@@ -1,0 +1,143 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
+jobs:
+  compile-pdf:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24.8.0
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v2
+      with:
+        chrome-version: 120
+    - name: Install dependencies
+      run: npm ci
+    - name: Build pdf
+      run: npm run build-pdf
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: slide-pdf
+        path: slide.pdf
+
+  compile-html:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24.8.0
+    - name: Install dependencies
+      run: npm ci
+    - name: Build html
+      run: npm run build-html
+    - name: Prepare files
+      run: |
+        cp -r assets public/
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: public
+
+  deploy-pages:
+    if: github.ref == 'refs/heads/main'
+    needs: compile-html
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # This will now find the 'github-pages' artifact automatically
+
+  create-tag:
+    needs: [compile-pdf, compile-html]
+    if: |
+      always() &&
+      needs.compile-pdf.result == 'success' &&
+      (needs.compile-html.result == 'success' || needs.compile-html.result == 'skipped')
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch full history for proper tagging
+    - name: Generate tag
+      id: tag
+      run: |
+        BRANCH="${GITHUB_REF_NAME//\//-}"  # Replace / with -
+        TAG="${BRANCH}-$(date +'%Y%m%d-%H%M%S')"
+        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        echo "Generated tag: $TAG"
+    - name: Create and push tag
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git tag ${{ steps.tag.outputs.tag }}
+        git push origin ${{ steps.tag.outputs.tag }}
+
+  upload-pdf-to-release:
+    needs: [create-tag, deploy-pages]
+    if: |
+      always() &&
+      needs.create-tag.result == 'success' &&
+      (needs.deploy-pages.result == 'success' || needs.deploy-pages.result == 'skipped')
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download PDF artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: slide-pdf
+
+    - name: Delete old releases from this branch
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        BRANCH="${GITHUB_REF_NAME//\//-}"
+        gh release list --repo ${{ github.repository }} --json tagName -q ".[].tagName" | \
+          grep "^${BRANCH}-" | \
+          while read -r tag; do
+            echo "Deleting release and tag: $tag"
+            gh release delete "$tag" --repo ${{ github.repository }} --yes --cleanup-tag || true
+          done
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ needs.create-tag.outputs.tag }}
+        name: "slide.pdf @ ${{ needs.create-tag.outputs.tag }}"
+        files: slide.pdf
+        body: |
+          Automated resume compilation
+
+          **Commit**: ${{ github.sha }}
+          **Branch**: ${{ github.ref_name }}
+          **Build Time**: ${{ needs.create-tag.outputs.tag }}

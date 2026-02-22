@@ -1,0 +1,170 @@
+/* @theme muti-onedark */
+
+@import 'default';
+
+@font-face {
+    font-family: 'Maple Mono NF CN WOFF2';
+    src: url('./assets/fonts/MapleMono-NF-CN-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Maple Mono NF CN WOFF2';
+    src: url('./assets/fonts/MapleMono-NF-CN-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+:root {
+    /* color definition from One Dark Pro */
+    --bg: #282c34;
+    --fg: #abb2bf;
+    --red: #e06c75;
+    --orange: #d19a66;
+    --yellow: #e5c07b;
+    --green: #98c379;
+    --cyan: #56b6c2;
+    --blue: #61afef;
+    --purple: #c678dd;
+    --white: #abb2bf;
+    --black: #22262e;
+    --gray: #5c6370;
+    --highlight: #e2be7d;
+    --comment: #7f848e;
+    background-color: var(--bg);
+    color: var(--fg);
+}
+
+section {
+    font-family: 'Maple Mono NF CN WOFF2', 'FiraCode Nerd Font', 'Fira Code', 'Source Code Pro', monospace;
+}
+
+img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+}
+
+img[alt~="rounded"] {
+    border-radius: 15px;
+}
+
+center-img {
+    display: block;
+    margin: 0 auto;
+    filter: invert(100%);
+}
+
+table {
+    margin: 0 auto;
+    display: table;
+    font-size: 0.8em;
+}
+
+table tr,
+table tr:nth-child(2n),
+table tr:nth-child(2n+1) {
+    background-color: transparent !important;
+}
+
+table td,
+table th {
+    background-color: var(--black);
+}
+
+
+h1 {
+    color: var(--red);
+}
+
+h2 {
+    color: var(--orange);
+}
+
+h3 {
+    color: var(--yellow);
+}
+
+h4 {
+    color: var(--green);
+}
+
+h5 {
+    color: var(--blue);
+}
+
+h6 {
+    color: var(--purple);
+}
+
+strong,
+b {
+    color: var(--blue);
+    font-weight: bold;
+}
+
+a {
+    color: var(--cyan);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer a {
+    color: var(--cyan);
+}
+
+section::after {
+    content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+    font-size: small;
+}
+
+/* .container {
+    display: flex;
+    gap: 20px;
+}
+.col {
+    font-size: 0.8em;
+    flex: 1;
+    border: 3px solid var(--gray);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0px 10px 5px 20px;
+} */
+
+.matrix {
+    display: flex;
+    flex-direction: column;
+    /* Stacks the rows vertically */
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+    /* Keeps columns horizontal */
+    gap: 20px;
+    /* Space between columns */
+    flex: 1;
+}
+
+.column {
+    flex: 1;
+    /* Make columns equal width */
+    padding: 0px 10px 5px 20px;
+    overflow: hidden;
+    border: solid;
+    /* Optional styling */
+    border-radius: 20px;
+    font-size: 22px;
+    border-color: var(--gray);
+}
+
+.column li {
+    font-size: 20px;
+}
+
+.column ul {
+    padding-left: 1.2em;
+}
