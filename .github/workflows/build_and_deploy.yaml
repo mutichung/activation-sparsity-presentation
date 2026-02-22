@@ -56,18 +56,6 @@ jobs:
     - name: Prepare files
       run: |
         cp -r assets public/
-    - name: Set up Python
-      uses: actions/setup-python@v6
-      with:
-        python-version: '3.13'
-    - name: Install fonttools
-      run: pip install fonttools brotli
-    - name: Subset Fonts
-      run: |
-        python -c "import fontTools.ttLib.woff2 as woff2; woff2.decompress('assets/fonts/MapleMono-NF-CN-Regular.woff2', 'assets/fonts/MapleMono-NF-CN-Regular.ttf')"
-        python -c "import fontTools.ttLib.woff2 as woff2; woff2.decompress('assets/fonts/MapleMono-NF-CN-Bold.woff2', 'assets/fonts/MapleMono-NF-CN-Bold.ttf')"
-        pyftsubset assets/fonts/MapleMono-NF-CN-Regular.ttf --text-file=slide.md --flavor=woff2 --output-file=assets/fonts/MapleMono-NF-CN-Regular.woff2
-        pyftsubset assets/fonts/MapleMono-NF-CN-Bold.ttf --text-file=slide.md --flavor=woff2 --output-file=assets/fonts/MapleMono-NF-CN-Bold.woff2
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v4
       with:
