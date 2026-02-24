@@ -8,20 +8,11 @@ math: mathjax
 
 <!-- _paginate: false -->
 
-# Activation Sparsity: An Intro
+# Activation Sparsity: A Brief Intro
 
-Mu-Ti Chung, 2025.03.02
+Mu-Ti Chung
 
----
-
-## Outline
-
-1. About Me
-1. Background & Motivation
-1. Methodology
-1. Results & Caveats
-1. Similar Ideas
-1. Conclusion
+2025.03.02
 
 ---
 
@@ -30,7 +21,19 @@ Mu-Ti Chung, 2025.03.02
 - **Name**: Mu-Ti Chung / Muti / 鍾慕提
 - **Location**: Taiwan
 - **Work**: Software Engineer @ Ambarella
-  - Neural network **compression** & **optimization**
+  - Model **compression** & **optimization**
+
+![bg right:20% contain](assets/profile_pic.png)
+
+---
+
+## Outline
+
+- Background & Motivation
+- Methodology
+- Results & Caveats
+- Similar Ideas
+- Conclusion
 
 ---
 
@@ -40,32 +43,68 @@ Mu-Ti Chung, 2025.03.02
 - LLMs are more challenging to prune & retrain.
 - FFN takes up $\sim\frac{2}{3}$ of the weights.
 
+![center width:800px](assets/ffn.drawio.svg)
+
+---
+
+![center width:1000px](assets/matmul.drawio.svg)
+
+<!-- _footer: "<sup>*</sup> The up projection route is omitted for simplicity." -->
+
+<!--
+Now let's zoom in.
+Here I have the matrix multiply layouts of the FFN. I also omit the up-projection route for simplicity, but the idea and the conclusion remains basically the same.
+
+* FFN consists of 2 levels: up + down w/ nonlinearity in the middle.
+* Older models like OPT use ReLU.
+* ReLU introduces sparsity.
+-->
+
+---
+
+![center width:1000px](assets/matmul_sparse.drawio.svg)
+
+<!-- _footer: "<sup>*</sup> The up projection route is omitted for simplicity." -->
+
+<!-- 
+* Sparsity => skip corresponding channels w/o hurting accuracy.
+* Both directions!
+* Up/gate: output channels
+* Down: input channels
+-->
+
+---
+
+### Observations
+
+- (Older) Models naturally have **activation sparsity**.
+
+  - Q: What about SiLU ones?
+
+- FFN allows us to **save computation without accuracy impact**.
+
+  - How can we exploit this at inference time?
+
 ---
 
 ## Methodology
 
-- How it works.
+<!-- - How it works.
 - Introducing Intrinsic Sparsity
 - Inference-Time Exploit
-- Analogy to MoE
-
----
-
-> Insert graphs
-
----
+- Analogy to MoE -->
 
 :::: row
 
 ::: column
 
-#### Intrinsic Sparsity
+### Intrinsic Sparsity
 
 :::
 
 ::: column
 
-#### Inference-Time Exploit
+### Inference-Time Exploit
 
 :::
 
