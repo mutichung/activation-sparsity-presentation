@@ -75,18 +75,6 @@ Here I have the matrix multiply layouts of the FFN. I also omit the up-projectio
 
 ---
 
-### Observations
-
-- (Older) Models naturally have **activation sparsity**.
-
-  - Q: What about SiLU ones?
-
-- FFN allows us to **save computation without accuracy impact**.
-
-  - How can we exploit this at inference time?
-
----
-
 ## Methodology
 
 <!-- - How it works.
@@ -94,17 +82,30 @@ Here I have the matrix multiply layouts of the FFN. I also omit the up-projectio
 - Inference-Time Exploit
 - Analogy to MoE -->
 
+![center height:150](assets/matmul_only_sparse.drawio.svg)
+
 :::: row
 
 ::: column
 
-### Intrinsic Sparsity
+#### Model's Activation Sparsity
+
+- (Older) ReLU models naturally have **activation sparsity**.
+- What about newer SiLU ones?
+
+==> **Relufication**!
+
 
 :::
 
 ::: column
 
-### Inference-Time Exploit
+#### Inference-Time Exploit
+
+- The FFN structure allows us to **save computation** with **no accuracy impact**.
+- How to exploit this at inference time?
+
+==> The **predictor** mechanism!
 
 :::
 
