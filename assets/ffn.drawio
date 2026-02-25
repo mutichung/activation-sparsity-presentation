@@ -7,19 +7,19 @@
         <mxCell id="PXfyHnaOrFDopgBXXlgz-15" edge="1" parent="1" source="PXfyHnaOrFDopgBXXlgz-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Comic Sans MS;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=default;" target="PXfyHnaOrFDopgBXXlgz-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="PXfyHnaOrFDopgBXXlgz-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fillColor=#4D4D4D;" value="Up" vertex="1">
+        <mxCell id="PXfyHnaOrFDopgBXXlgz-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Relief;fillColor=#4D4D4D;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DComic%2BRelief;" value="Up" vertex="1">
           <mxGeometry height="40" width="80" x="240" y="340" as="geometry" />
         </mxCell>
         <mxCell id="PXfyHnaOrFDopgBXXlgz-5" edge="1" parent="1" source="PXfyHnaOrFDopgBXXlgz-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Comic Sans MS;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=default;" target="PXfyHnaOrFDopgBXXlgz-3" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="PXfyHnaOrFDopgBXXlgz-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fillColor=#4D4D4D;" value="Gate" vertex="1">
+        <mxCell id="PXfyHnaOrFDopgBXXlgz-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Relief;fillColor=#4D4D4D;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DComic%2BRelief;" value="Gate" vertex="1">
           <mxGeometry height="40" width="80" x="180" y="420" as="geometry" />
         </mxCell>
         <mxCell id="PXfyHnaOrFDopgBXXlgz-21" edge="1" parent="1" source="PXfyHnaOrFDopgBXXlgz-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontFamily=Comic Sans MS;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=default;" target="PXfyHnaOrFDopgBXXlgz-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="PXfyHnaOrFDopgBXXlgz-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fillColor=#4D4D4D;" value="Activation" vertex="1">
+        <mxCell id="PXfyHnaOrFDopgBXXlgz-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Relief;fillColor=#4D4D4D;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DComic%2BRelief;" value="Activation" vertex="1">
           <mxGeometry height="40" width="80" x="300" y="420" as="geometry" />
         </mxCell>
         <mxCell id="PXfyHnaOrFDopgBXXlgz-12" edge="1" parent="1" source="PXfyHnaOrFDopgBXXlgz-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Comic Sans MS;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=default;" target="PXfyHnaOrFDopgBXXlgz-2">
@@ -47,7 +47,7 @@
         <mxCell id="PXfyHnaOrFDopgBXXlgz-14" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Comic Sans MS;fontSize=12;fontColor=default;fillColor=#4D4D4D;sketch=1;curveFitting=1;jiggle=2;" value="x" vertex="1">
           <mxGeometry height="20" width="20" x="390" y="390" as="geometry" />
         </mxCell>
-        <mxCell id="PXfyHnaOrFDopgBXXlgz-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fillColor=#4D4D4D;" value="Down" vertex="1">
+        <mxCell id="PXfyHnaOrFDopgBXXlgz-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Relief;fillColor=#4D4D4D;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DComic%2BRelief;" value="Down" vertex="1">
           <mxGeometry height="40" width="80" x="460" y="380" as="geometry" />
         </mxCell>
         <mxCell id="PXfyHnaOrFDopgBXXlgz-19" parent="1" style="shape=waypoint;sketch=1;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;rounded=1;jiggle=2;curveFitting=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Comic Sans MS;fontSize=12;fontColor=default;" value="" vertex="1">
