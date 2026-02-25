@@ -33,7 +33,7 @@ Mu-Ti Chung
 - Methodology
 - Results & Caveats
 - Similar Ideas
-- Conclusion
+- Conclusion & Future Work
 
 ---
 
@@ -185,7 +185,7 @@ footer {
 
 ---
 
-#### MoE Analogy
+#### Analogy to MoE
 
 ![center](assets/moe.drawio.svg)
 
@@ -206,33 +206,29 @@ footer {
 - Precision vs. recall
   - Focal loss
 - Predictor size vs. performance
+  - Low-rank adapter
 - Intrinsic sparsity $\uparrow$ => difficulty of predictor training $\downarrow$
 
 ---
 
-- Title: My Experience and Attempt on Activation Sparsity
-- Outline
-- Brief self-intro
-    - Muti from Taiwan
-    - Worked at Ambarella for 4.5 years as a software engineer.
-    - Focused on model compression and optimization, e.g. pruning & quantization.
-- Background & Motivation
-    - Previous Ambarella chips can make use of unstructured weight sparsity.
-    - LLMs are more challenging to prune (retraining is resource-intensive)
-    - FFN takes up around 2/3 of the computation/IO.
-        - We'd like to reduce the IO bandwidth of the FFN module.
-- Methodology: Activation Sparsity via ReLU & predictor.
-    - How it works.
-    - Introducing intrinsic sparsity: Relufication
-    - Predictor training
-    - Comparison to MoE
-- Results & Caveats
-- Other things we've tried
-    - Q-Sparse
-- Similar Ideas
-    - Mixture of Experts
-    - DeepSeek Sparse Attention
-- Conclusion & Future Work
+### Summary
+
+---
+
+## Results & Observations
+
+---
+
+## Similar Ideas
+
+- MoE & Upcycling
+- Q-Sparse, TEAL, CATS (?)
+- Deepseek Sparse Attention (DSA)
+
+---
+
+## Conclusion & Future Work
+
 
 ---
 
