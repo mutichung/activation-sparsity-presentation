@@ -187,7 +187,7 @@ footer {
 
 #### MoE Analogy
 
-
+![center](assets/moe.drawio.svg)
 
 ---
 
