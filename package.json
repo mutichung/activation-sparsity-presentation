@@ -8,6 +8,7 @@
   "scripts": {
     "build-html": "mkdir -p public && cp -r $PWD/assets public/ && marp --engine engine.mjs --theme theme.css slide.md -o public/index.html",
     "build-pdf": "marp --engine engine.mjs --theme theme.css slide.md -o slide.pdf --allow-local-files",
-    "watch": "mkdir -p public && cp -r $PWD/assets public/ && marp --engine engine.mjs --theme theme.css slide.md -o public/index.html -w"
+    "watch": "mkdir -p public && cp -r $PWD/assets public/ && marp --engine engine.mjs --theme theme.css slide.md -o public/index.html -w",
+    "subset-fonts": "for f in assets/fonts/original/*.woff2; do uvx --from 'fonttools[woff]' pyftsubset \"$f\" --output-file=\"assets/fonts/$(basename $f)\" --flavor=woff2 --text='鍾慕提' --unicodes='U+0000-00FF,U+0100-024F,U+0300-036F,U+2000-206F,U+2070-209F,U+20A0-20CF,U+2100-214F,U+2190-21FF,U+2200-22FF,U+2300-23FF,U+25A0-25FF,U+2600-26FF,U+FE00-FE0F,U+FEFF,U+FFFD' --layout-features='*' --no-hinting --desubroutinize; done"
   }
 }
