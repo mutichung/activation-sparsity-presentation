@@ -12,7 +12,24 @@ math: mathjax
 
 Mu-Ti Chung
 
-2025.03.02
+<!-- _footer: "
+[![height:150px](assets/qr-code.svg)](https://mutichung.github.io/activation-sparsity-presentation)
+
+[mutichung.github.io/activation-sparsity-presentation](https://mutichung.github.io/activation-sparsity-presentation)
+" -->
+
+<style scoped>
+footer {
+  position: absolute;
+  left: auto;
+  text-align: right;
+  right: 50px;
+  /* height: 400px; */
+}
+footer a {
+  color: var(--comment);
+}
+</style>
 
 ---
 
@@ -77,11 +94,6 @@ Here I have the matrix multiply layouts of the FFN. I also omit the up-projectio
 
 ## Methodology
 
-<!-- - How it works.
-- Introducing Intrinsic Sparsity
-- Inference-Time Exploit
-- Analogy to MoE -->
-
 ![center height:150](assets/matmul_only_sparse.drawio.svg)
 
 :::: row
@@ -139,6 +151,8 @@ Here I have the matrix multiply layouts of the FFN. I also omit the up-projectio
 - Longer training
 - Knowledge distillation
 
+:::
+
 ::::
 
 <style scoped>
@@ -178,16 +192,23 @@ footer {
 [2] Alizadeh, Keivan, et al. \"Llm in a flash: Efficient large language model inference with limited memory.\"
 " -->
 
-<!-- "
+<!--
 - Skipping down projection is rather easy / intuitive, but that's just 1/3 of the weights.
 - Take benefit at the front modules.
-" -->
+-->
 
 ---
 
 #### Analogy to MoE
 
 ![center](assets/moe.drawio.svg)
+
+<!--
+- The former graph can be reorganized into an MoE-like formulation.
+- In this case, the predictor acts as the router in the MoE.
+- Each expert is a single row/column in up, gate, and down projection weight.
+- Difference: topk vs. relu; fixed vs. dynamic sparsity; weighted vs. pure add
+-->
 
 ---
 
@@ -211,11 +232,20 @@ footer {
 
 ---
 
-### Summary
-
----
-
 ## Results & Observations
+
+- Relufication
+  - ReLU: ~2% accuracy drop on Llama-2-7b
+  - dReLU
+- Predictor
+- Combined
+
+<!--
+To prevent myself from getting into any trouble, allow me to share only the qualitative results.
+
+
+
+-->
 
 ---
 
@@ -258,7 +288,13 @@ def goodbye():
 ```
 
 <!-- _footer: "
-* Created with markdown using [Marp](https://github.com/marp-team/marp).\n
-* Color theme from [onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim).\n
+* Created with markdown using [Marp](https://github.com/marp-team/marp).
+
+* Color theme from [onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim).
+
 * Fonts by [Maple Mono](https://github.com/subframe7536/maple-font).
+
+* Graphs created with [draw.io](https://draw.io).
+
+* QR-code created with [kozakdenys/qr-code-styling](https://qr-code-styling.com/).
 "-->
