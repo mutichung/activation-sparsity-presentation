@@ -48,8 +48,7 @@ footer a {
 
 - Background & Motivation
 - Methodology
-- Results & Caveats
-- Similar Ideas
+- Results & Observations
 - Conclusion & Future Work
 
 ---
@@ -58,7 +57,7 @@ footer a {
 
 - Ambarella chips benefit from **unstructured sparsity**.
 - LLMs are more challenging to prune & retrain.
-- FFN takes up $\sim\frac{2}{3}$ of the weights.
+- **FFN** takes up $\sim\frac{2}{3}$ of the weights.
 
 ![center width:800px](assets/ffn.drawio.svg)
 
@@ -139,7 +138,7 @@ Here I have the matrix multiply layouts of the FFN. I also omit the up-projectio
 
 - ReLU variants <sup>\[2\]</sup>
 - Progressive sparsity regularization <sup>\[3\]</sup>
-- Insert more ReLUs <sup>\[4\]</sup>
+- Insert more ReLUs (dReLU) <sup>\[4\]</sup>
 
 :::
 
@@ -222,7 +221,7 @@ footer {
 
 ---
 
-#### Challenges
+<!-- #### Challenges
 
 - Precision vs. recall
   - Focal loss
@@ -230,35 +229,81 @@ footer {
   - Low-rank adapter
 - Intrinsic sparsity $\uparrow$ => difficulty of predictor training $\downarrow$
 
----
+--- -->
 
 ## Results & Observations
 
-- Relufication
-  - ReLU: ~2% accuracy drop on Llama-2-7b
-  - dReLU
-- Predictor
-- Combined
+::::: matrix
+
+:::: row
+
+::: column
+
+#### Relufication
+
+- **10B**-token budget
+- Data, LR, loss
+
+| Llama-2-7b |  Acc | Sparsity |
+| ---------- | ---: | -------: |
+| ReLU       |  -2% |      67% |
+| dReLU      |  -5% |      85% |
+
+- Challenging on newer models
+
+:::
+
+:::column
+
+#### Predictor
+
+- Data: 1M tokens
+- Size: <5% of FFN
+- Focal loss
+- On **TurboSparse** (dReLU):
+  - 99% recall
+  - 80% predicted sparsity
+  - No accuracy impact
+
+:::
+
+::: column
+
+#### Combined
+
+- 
+
+:::
+
+::::
+
+:::::
 
 <!--
 To prevent myself from getting into any trouble, allow me to share only the qualitative results.
 
-
+# Relufication 
+ 
+- 10B = ~1 week for 7B model on 4x H100
 
 -->
 
 ---
 
-## Similar Ideas
-
-- MoE & Upcycling
-- Q-Sparse, TEAL, CATS (?)
-- Deepseek Sparse Attention (DSA)
-
----
-
 ## Conclusion & Future Work
 
+- **Training-intensive** compression technique
+- Inference-time kernel development
+- Orthogonality to other optimization tricks
+- Similar ideas
+  - MoE & Upcycling
+  - Q-Sparse, TEAL, CATS
+  - DeepSeek Sparse Attention (DSA)
+
+<!-- 
+Not a particularly **successful** project :(
+
+-->
 
 ---
 
