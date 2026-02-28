@@ -69,7 +69,7 @@ footer a {
 
 <!--
 Now let's zoom in.
-Here I have the matrix multiply layouts of the FFN. I also omit the up-projection route for simplicity, but the idea and the conclusion remains basically the same.
+Here I have the matrix multiply layouts of the FFN. Note that I omit the up-projection route for simplicity, but the idea and the conclusion remains basically the same.
 
 * FFN consists of 2 levels: up + down w/ nonlinearity in the middle.
 * Older models like OPT use ReLU.
@@ -310,9 +310,27 @@ To prevent myself from getting into any trouble, allow me to share only the qual
 - Inference-time kernel development
 - Orthogonality to other optimization tricks
 - Similar ideas
-  - MoE & Upcycling
-  - Q-Sparse, TEAL, CATS
-  - DeepSeek Sparse Attention (DSA)
+  - MoE & Upcycling <sup>\[1\]</sup>
+  - Q-Sparse <sup>\[2\]</sup>, TEAL <sup>\[3\]</sup>, CATS <sup>\[4\]</sup>
+  - DeepSeek Sparse Attention (DSA) <sup>\[5\]</sup>
+
+<style scoped>
+footer {
+    font-size: 13px
+}
+</style>
+
+<!-- _footer: "
+[1] He, Ethan, et al. \"Upcycling large language models into mixture of experts.\"
+
+[2] Wang, Hongyu, et al. \"Q-sparse: All large language models can be fully sparsely-activated.\"
+
+[3] Liu, James, et al. \"Training-free activation sparsity in large language models.\"
+
+[4] Lee, Donghyun, et al. \"Cats: Contextually-aware thresholding for sparsity in large language models.\"
+
+[5] DeepSeek-AI. \"Deepseek-v3.2-Exp: Boosting Long-Context Efficiency with DeepSeek Sparse Attention.\"
+" -->
 
 <!--
 Not a particularly **successful** project :(
@@ -325,10 +343,10 @@ Not a particularly **successful** project :(
 
 <style scoped>
 ul {
-    padding-left: 25px
+    padding-left: 16px
 }
 li {
-    font-size: 20px
+    font-size: 15.5px
 }
 </style>
 
@@ -338,6 +356,11 @@ li {
 - Song, Yixin, et al. "Turbo sparse: Achieving llm sota performance with minimal activated parameters." arXiv preprint arXiv:2406.05955 (2024).
 - Liu, Zichang, et al. \"Deja vu: Contextual sparsity for efficient llms at inference time.\" International Conference on Machine Learning. PMLR, 2023.
 - Alizadeh, Keivan, et al. "Llm in a flash: Efficient large language model inference with limited memory." Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2024.
+- He, Ethan, et al. \"Upcycling large language models into mixture of experts.\" arXiv preprint arXiv:2410.07524 (2024).
+- Wang, Hongyu, et al. \"Q-sparse: All large language models can be fully sparsely-activated." arXiv preprint arXiv:2407.10969 (2024).
+- Liu, James, et al. \"Training-free activation sparsity in large language models.\" arXiv preprint arXiv:2408.14690 (2024).
+- Lee, Donghyun, et al. \"Cats: Contextually-aware thresholding for sparsity in large language models.\" arXiv preprint arXiv:2404.08763 (2024).
+- DeepSeek-AI. \"Deepseek-v3.2-Exp: Boosting Long-Context Efficiency with DeepSeek Sparse Attention.\" GitHub (2025).
 
 ---
 
@@ -356,4 +379,6 @@ def goodbye():
 * Graphs created with [draw.io](https://draw.io).
 
 * QR-code created with [kozakdenys/qr-code-styling](https://qr-code-styling.com/).
+
+* Crafted by hand with ♥️.
 "-->
