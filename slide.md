@@ -258,11 +258,12 @@ footer {
 #### Predictor
 
 - Data: 1M tokens
-- Size: <5% of FFN
+- Size: ~10% of FFN
 - Focal loss
 - On **TurboSparse** (dReLU):
   - 99% recall
   - 80% predicted sparsity
+    (vs. 90% actual)
   - No accuracy impact
 
 :::
@@ -271,7 +272,20 @@ footer {
 
 #### Combined
 
-- 
+- Self-trained ReLU-Llama
+- Predictor
+  - 10% size
+  - 98% recall
+  - 57% predicted sparsity
+  - Another -1% acc drop
+
+<style scoped>
+  .column {
+    font-size: 20px;
+  }
+</style>
+
+=> **-3%** acc @ **47%** sparsity
 
 :::
 
@@ -282,10 +296,10 @@ footer {
 <!--
 To prevent myself from getting into any trouble, allow me to share only the qualitative results.
 
-# Relufication 
- 
-- 10B = ~1 week for 7B model on 4x H100
+# Relufication
 
+- 10B = ~1 week for 7B model on 4x H100
+- mistral: -7%; qwen2-7b: -10%
 -->
 
 ---
@@ -300,7 +314,7 @@ To prevent myself from getting into any trouble, allow me to share only the qual
   - Q-Sparse, TEAL, CATS
   - DeepSeek Sparse Attention (DSA)
 
-<!-- 
+<!--
 Not a particularly **successful** project :(
 
 -->
