@@ -61,6 +61,20 @@ footer a {
 
 ![center width:800px](assets/ffn.drawio.svg)
 
+<!--
+* Previous Ambarella chips can benefit from static, unstructured sparsity on CNNs.
+We create tools and push customers towards pruning their models in order to get the ultimate on-chip performance.
+As a result, when entering into the LLM era, we naturally wanted to also utilize this feature.
+
+However, we found out that LLMs are more challenging to prune & retrain, especially on the latter part, where LLMs are notoriously resource hungry.
+Therefore, we turn to this series of activation sparsity research, specifically activation sparsity on FFN.
+
+Why FFN? FFN takes up 2/3 of the LLM weights.
+If we can reduce the footprint of the FFN, we can effectively improve the inference performance of the entire network.
+
+Here's a block diagram of the FFN module.
+-->
+
 ---
 
 ![center width:1000px](assets/matmul.drawio.svg)
@@ -69,11 +83,13 @@ footer a {
 
 <!--
 Now let's zoom in.
-Here I have the matrix multiply layouts of the FFN. Note that I omit the up-projection route for simplicity, but the idea and the conclusion remains basically the same.
+Here I have the matrix multiply layouts of the FFN.
+Note that I omit the up-projection route for simplicity, but the idea and the conclusion remains basically the same.
 
-* FFN consists of 2 levels: up + down w/ nonlinearity in the middle.
-* Older models like OPT use ReLU.
-* ReLU introduces sparsity.
+* FFN consists of 2 levels: up / gate -> nonlinear activation function -> down projection.
+* At the time of this research, older models like OPT use ReLU as their activation function.
+* Special about ReLU: introduces sparsity.
+* Darker areas resemble negative value (?)
 -->
 
 ---
@@ -84,9 +100,7 @@ Here I have the matrix multiply layouts of the FFN. Note that I omit the up-proj
 
 <!--
 * Sparsity => skip corresponding channels w/o hurting accuracy.
-* Both directions!
-* Up/gate: output channels
-* Down: input channels
+* Ideally, somehow manage to know which channels can be skipped, corresponding channels in the up projection can be skipped as well!
 -->
 
 ---
@@ -220,16 +234,6 @@ footer {
 3. Train predictor on (X, Y).
 
 ---
-
-<!-- #### Challenges
-
-- Precision vs. recall
-  - Focal loss
-- Predictor size vs. performance
-  - Low-rank adapter
-- Intrinsic sparsity $\uparrow$ => difficulty of predictor training $\downarrow$
-
---- -->
 
 ## Results & Observations
 
