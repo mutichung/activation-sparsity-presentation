@@ -263,7 +263,6 @@ footer {
 
 - Data: 1M tokens
 - Size: ~10% of FFN
-- Focal loss
 - On **TurboSparse** (dReLU):
   - 99% recall
   - 80% predicted sparsity
