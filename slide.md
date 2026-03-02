@@ -62,7 +62,7 @@ footer a {
 ![center width:800px](assets/ffn.drawio.svg)
 
 <!--
-* Previous Ambarella chips can benefit from static, unstructured sparsity on CNNs.
+Previous Ambarella chips can benefit from static, unstructured sparsity on CNNs.
 We create tools and push customers towards pruning their models in order to get the ultimate on-chip performance.
 As a result, when entering into the LLM era, we naturally wanted to also utilize this feature.
 
@@ -135,6 +135,10 @@ Note that I omit the up-projection route for simplicity, but the idea and the co
 
 ::::
 
+<!--
+We just mentioned the two pillars of utilizing activation sparsity
+-->
+
 ---
 
 ### Relufication
@@ -184,6 +188,10 @@ footer {
 [4] Song, Yixin, et al. \"Turbo sparse: Achieving llm sota performance with minimal activated parameters.\"
 " -->
 
+<!--
+Converting a dense model into a sparse one yields the tradeoff between sparsity and accuracy, and the succeeding works improving one or both of them.
+-->
+
 ---
 
 ### Predictor
@@ -206,8 +214,8 @@ footer {
 " -->
 
 <!--
-- Skipping down projection is rather easy / intuitive, but that's just 1/3 of the weights.
-- Take benefit at the front modules.
+* The task of the predictor is to determine which channels in the activation should be activated or not.
+* Output a tensor with the same shape as the activation.
 -->
 
 ---
@@ -220,7 +228,7 @@ footer {
 - The former graph can be reorganized into an MoE-like formulation.
 - In this case, the predictor acts as the router in the MoE.
 - Each expert is a single row/column in up, gate, and down projection weight.
-- Difference: topk vs. relu; fixed vs. dynamic sparsity; weighted vs. pure add
+- Difference: topk vs. sigmoid; fixed vs. dynamic sparsity; weighted vs. pure addition
 -->
 
 ---
@@ -297,8 +305,6 @@ footer {
 :::::
 
 <!--
-To prevent myself from getting into any trouble, allow me to share only the qualitative results.
-
 # Relufication
 
 - 10B = ~1 week for 7B model on 4x H100
@@ -338,6 +344,14 @@ footer {
 <!--
 Not a particularly **successful** project :(
 
+In the end, we concluded that activation sparsity is a training-intensive compression technique.
+It's not something like PTQ or lite-QAT which trades little computational resource with huge compression ratios.
+
+If we host our own models as a service, it might be worth it to go through the retraining process and benefit from activation sparsity; however, as an optimization algorithm in the toolkit, this isn't particularly persuading to customers, especially those who are just throwing open weight models at us.
+
+Also note that this is just an early PoC research. I haven't touched the infra to support this feature on hardware, nor have I dive deeper into its impact when applied with other optimization tricks.
+
+If I were to continue this journey, here are some similar ideas I'd go through and get some inspiration.
 -->
 
 ---
